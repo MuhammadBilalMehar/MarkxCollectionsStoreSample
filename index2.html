@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MarkxCollections — Wear Your Style</title>
+<meta name="description" content="MarkxCollections — premium T-shirts, DTF printing, custom printing and bulk orders." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf9f4;
+    --bg-alt:#ffffff;
+    --ink:#0a0a0a;
+    --ink-soft:#57544c;
+    --muted:#8c887e;
+    --line:rgba(10,10,10,.12);
+    --card:#ffffff;
+    --card-line:rgba(10,10,10,.10);
+    --lime:#cdfa3f;
+    --lime-ink:#0a0a0a;
+    --chip:#0a0a0a;
+    --chip-text:#faf9f4;
+    --shadow:0 18px 40px rgba(10,10,10,.10);
+    --hero-overlay:rgba(10,10,10,.35);
+    color-scheme: light;
+  }
+  html[data-theme="dark"]{
+    --bg:#0b0b0a;
+    --bg-alt:#141412;
+    --ink:#f7f6f1;
+    --ink-soft:#c9c6bc;
+    --muted:#8f8c82;
+    --line:rgba(247,246,241,.12);
+    --card:#141412;
+    --card-line:rgba(247,246,241,.10);
+    --lime:#cdfa3f;
+    --lime-ink:#0a0a0a;
+    --chip:#cdfa3f;
+    --chip-text:#0a0a0a;
+    --shadow:0 18px 40px rgba(0,0,0,.45);
+    --hero-overlay:rgba(0,0,0,.55);
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',ui-sans-serif,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    transition:background .35s ease, color .35s ease;
+  }
+  .display{font-family:'Archivo Black','Inter',sans-serif; letter-spacing:-.01em;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer;}
+  .wrap{max-width:1240px; margin:0 auto; padding:0 20px;}
+  @media(min-width:1024px){.wrap{padding:0 40px;}}
+
+  /* header */
+  header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line);}
+  .headbar{height:82px; display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:'Archivo Black'; font-size:22px; letter-spacing:-.02em;}
+  .logo span{color:var(--ink);}
+  .logo b{background:var(--lime); padding:1px 6px; margin-left:2px;}
+  nav.mainnav{display:none; gap:34px; font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:.06em;}
+  @media(min-width:1024px){nav.mainnav{display:flex;}}
+  nav.mainnav a{position:relative; padding-bottom:4px;}
+  nav.mainnav a:hover{color:var(--ink-soft);}
+  .headicons{display:flex; align-items:center; gap:6px;}
+  .icon-btn{width:42px; height:42px; display:grid; place-items:center; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--ink); font-size:16px; transition:.2s;}
+  .icon-btn:hover{border-color:var(--ink);}
+  .theme-toggle{position:relative; width:56px; height:32px; border-radius:999px; background:var(--ink); border:1px solid var(--ink); padding:3px; display:flex; align-items:center;}
+  .theme-toggle .knob{width:24px; height:24px; border-radius:999px; background:var(--lime); display:grid; place-items:center; font-size:12px; transform:translateX(0); transition:transform .3s cubic-bezier(.6,.2,.2,1);}
+  html[data-theme="dark"] .theme-toggle .knob{transform:translateX(24px);}
+  .cart-dot{position:absolute; top:-2px; right:-2px; background:var(--lime); color:var(--lime-ink); font-size:10px; font-weight:900; width:18px; height:18px; border-radius:999px; display:grid; place-items:center;}
+  #mobileMenu{display:none; flex-direction:column; gap:2px; padding:14px 20px 20px; border-top:1px solid var(--line);}
+  #mobileMenu.open{display:flex;}
+  #mobileMenu a{padding:10px 0; font-weight:700; text-transform:uppercase; font-size:13px; letter-spacing:.05em; border-bottom:1px solid var(--line);}
+  .menu-btn{display:grid;}
+  @media(min-width:1024px){.menu-btn{display:none;}}
+
+  /* hero */
+  .hero{position:relative; overflow:hidden; background:var(--ink);}
+  .hero-slide{position:absolute; inset:0; opacity:0; transform:scale(1.02); transition:opacity .8s ease, transform .8s ease; pointer-events:none;}
+  .hero-slide.active{opacity:1; transform:scale(1); pointer-events:auto;}
+  .hero-slide img{width:100%; height:100%; object-fit:cover; display:block;}
+  .hero-slide::after{content:''; position:absolute; inset:0; background:var(--hero-overlay);}
+  .hero-inner{position:relative; z-index:5; padding:90px 0 120px;}
+  .badge-pill{display:inline-block; background:var(--lime); color:var(--lime-ink); font-weight:900; font-size:11px; letter-spacing:.12em; text-transform:uppercase; padding:8px 16px; border-radius:999px;}
+  .hero h1{color:#fff; font-size:clamp(46px,8vw,96px); line-height:.92; margin:22px 0 0;}
+  .hero h1 em{font-style:normal; color:var(--lime);}
+  .hero p.lead{color:rgba(255,255,255,.78); font-size:17px; max-width:480px; margin:22px 0 0;}
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px; margin-top:34px;}
+  .btn-primary{background:var(--lime); color:var(--lime-ink); font-weight:900; padding:16px 26px; border-radius:2px; border:2px solid var(--lime); font-size:13px; letter-spacing:.04em; text-transform:uppercase; transition:.2s;}
+  .btn-primary:hover{background:transparent; color:var(--lime);}
+  .btn-ghost{border:2px solid rgba(255,255,255,.35); color:#fff; font-weight:800; padding:16px 26px; border-radius:2px; font-size:13px; letter-spacing:.04em; text-transform:uppercase; transition:.2s;}
+  .btn-ghost:hover{border-color:var(--lime); color:var(--lime);}
+  .hero-tags{display:none; position:absolute; right:40px; top:120px; z-index:6; flex-direction:column; gap:14px; align-items:flex-end;}
+  @media(min-width:900px){.hero-tags{display:flex;}}
+  .tag-sticker{background:#fff; color:#0a0a0a; font-weight:900; font-size:12.5px; line-height:1.25; padding:12px 16px; box-shadow:var(--shadow); max-width:150px; text-align:right; text-transform:uppercase;}
+  .tag-sticker.lime{background:var(--lime);}
+  .tag-sticker:nth-child(1){transform:rotate(-3deg);}
+  .tag-sticker:nth-child(2){transform:rotate(2deg);}
+  .tag-sticker:nth-child(3){transform:rotate(-2deg);}
+  .hero-nav{position:absolute; z-index:6; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:999px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); color:#fff; font-size:20px; backdrop-filter:blur(6px);}
+  .hero-nav.prev{left:20px;} .hero-nav.next{right:20px;}
+  .dots{position:absolute; z-index:6; bottom:64px; left:50%; transform:translateX(-50%); display:flex; gap:8px;}
+  .dot{width:30px; height:3px; background:rgba(255,255,255,.35); border:none;}
+  .dot.active{background:var(--lime);}
+
+  /* torn divider */
+  .torn{display:block; width:100%; height:34px; margin-top:-1px;}
+  .torn path{fill:var(--bg);}
+  .torn-alt path{fill:var(--bg-alt);}
+  .torn-ink path{fill:var(--ink);}
+
+  /* benefits */
+  .benefits{background:var(--bg-alt); border-bottom:1px solid var(--line);}
+  .benefits-grid{display:grid; grid-template-columns:1fr; }
+  @media(min-width:640px){.benefits-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(min-width:1024px){.benefits-grid{grid-template-columns:repeat(5,1fr);}}
+  .benefit{padding:26px 22px; border-top:1px solid var(--line);}
+  @media(min-width:1024px){.benefit{border-top:none; border-left:1px solid var(--line);} .benefit:first-child{border-left:none;}}
+  .benefit .em{font-size:22px;}
+  .benefit b{display:block; margin-top:10px; font-size:14px;}
+  .benefit span{display:block; margin-top:3px; font-size:12.5px; color:var(--muted);}
+
+  /* shop */
+  .shop{background:var(--bg-alt); padding:88px 0 96px;}
+  .eyebrow{color:var(--ink); background:var(--lime); display:inline-block; padding:5px 12px; font-weight:900; font-size:11px; letter-spacing:.14em; text-transform:uppercase;}
+  .shop h2{font-size:clamp(34px,5vw,58px); margin:16px 0 0;}
+  .shop-sub{color:var(--muted); margin-top:10px; max-width:420px;}
+  .shop-head{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:24px;}
+  .filters{display:flex; flex-wrap:wrap; gap:8px;}
+  .filter-btn{padding:10px 18px; border-radius:999px; font-weight:800; font-size:12.5px; border:1px solid var(--line); background:transparent; color:var(--ink); text-transform:uppercase; letter-spacing:.03em;}
+  .filter-btn.active{background:var(--ink); color:var(--bg); border-color:var(--ink);}
+  html[data-theme="dark"] .filter-btn.active{background:var(--lime); color:var(--lime-ink);}
+  .search-row{margin-top:30px;}
+  .search-row input{width:100%; border:1px solid var(--line); background:var(--bg); color:var(--ink); padding:16px 20px; font-size:14px; border-radius:2px;}
+  .search-row input:focus{outline:2px solid var(--lime);}
+  .grid{display:grid; grid-template-columns:1fr; gap:26px; margin-top:44px;}
+  @media(min-width:640px){.grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:1024px){.grid{grid-template-columns:repeat(4,1fr);}}
+  .pcard{background:var(--card); border:1px solid var(--card-line); position:relative; transition:transform .25s ease, box-shadow .25s ease;}
+  .pcard:hover{transform:translateY(-6px); box-shadow:var(--shadow);}
+  .pcard .imgwrap{position:relative; height:300px; overflow:hidden; background:var(--bg);}
+  .pcard .imgwrap img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+  .pcard:hover .imgwrap img{transform:scale(1.06);}
+  .ptag{position:absolute; top:14px; left:14px; background:var(--chip); color:var(--chip-text); font-size:10px; font-weight:900; letter-spacing:.08em; padding:6px 10px; text-transform:uppercase;}
+  .pexpand{position:absolute; bottom:14px; right:14px; width:38px; height:38px; border-radius:999px; background:var(--bg); color:var(--ink); border:1px solid var(--card-line); font-size:15px;}
+  .pbody{padding:20px;}
+  .pcat{font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:800;}
+  .pname{font-size:18px; font-weight:800; margin-top:6px;}
+  .pdesc{font-size:13px; color:var(--muted); margin-top:6px; line-height:1.5;}
+  .prow{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:18px;}
+  .pprice{font-size:17px; font-weight:900;}
+  .pbtn{background:var(--ink); color:var(--bg); font-weight:800; font-size:12px; padding:11px 14px; border:none; text-transform:uppercase; letter-spacing:.03em; transition:.2s;}
+  .pbtn:hover{background:var(--lime); color:var(--lime-ink);}
+  .empty-state{grid-column:1/-1; text-align:center; padding:70px 0; color:var(--muted);}
+
+  /* card discount */
+  .promo{background:var(--lime); color:#0a0a0a; padding:56px 0;}
+  .promo-row{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:28px;}
+  .promo h3{font-size:clamp(28px,4vw,42px); margin:8px 0 0;}
+  .promo p{max-width:560px; margin-top:12px; font-weight:600;}
+  .promo .eyebrow{background:#0a0a0a; color:var(--lime);}
+  .promo-btn{background:#0a0a0a; color:#fff; font-weight:900; padding:16px 26px; text-transform:uppercase; font-size:13px; letter-spacing:.04em; white-space:nowrap; transition:.2s;}
+  .promo-btn:hover{background:#fff; color:#0a0a0a;}
+
+  /* custom */
+  .custom{background:var(--ink); color:#f7f6f1; padding:96px 0;}
+  .custom-grid{display:grid; grid-template-columns:1fr; gap:52px; align-items:center;}
+  @media(min-width:1024px){.custom-grid{grid-template-columns:1.05fr 1fr;}}
+  .custom .eyebrow{background:var(--lime); color:#0a0a0a;}
+  .custom h2{font-size:clamp(32px,5vw,54px); margin:16px 0 0; color:#fff;}
+  .custom p.lead{color:rgba(247,246,241,.62); margin-top:20px; font-size:16px; max-width:480px;}
+  .featcards{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:30px;}
+  .featcard{border:1px solid rgba(247,246,241,.14); background:rgba(247,246,241,.04); padding:18px; border-radius:2px;}
+  .featcard b{color:#fff; font-size:14px;}
+  .featcard p{color:rgba(247,246,241,.5); font-size:12.5px; margin-top:8px; line-height:1.5;}
+  .quote-form{background:rgba(247,246,241,.05); border:1px solid rgba(247,246,241,.14); padding:30px; border-radius:2px;}
+  .quote-form h3{font-size:22px; color:#fff; margin:0;}
+  .form-grid{display:grid; grid-template-columns:1fr; gap:14px; margin-top:22px;}
+  @media(min-width:640px){.form-grid{grid-template-columns:1fr 1fr;}}
+  .field{width:100%; background:rgba(247,246,241,.06); border:1px solid rgba(247,246,241,.16); color:#fff; padding:13px 15px; font-size:14px; border-radius:2px; font-family:inherit;}
+  .field:focus{outline:2px solid var(--lime);}
+  textarea.field{margin-top:14px; resize:vertical;}
+  select.field option{background:#141412;}
+  .submit-btn{margin-top:16px; width:100%; background:var(--lime); color:#0a0a0a; font-weight:900; padding:16px; text-transform:uppercase; font-size:13px; letter-spacing:.04em; border:none;}
+
+  /* bulk */
+  .bulk{background:var(--bg-alt); padding:96px 0;}
+  .bulk h2{font-size:clamp(32px,5vw,54px); margin:16px 0 0; max-width:620px;}
+  .bulk p.lead{color:var(--muted); margin-top:16px; max-width:560px; font-size:16px;}
+  .steps{display:grid; grid-template-columns:1fr; gap:16px; margin-top:46px;}
+  @media(min-width:768px){.steps{grid-template-columns:repeat(3,1fr);}}
+  .step{border:1px solid var(--card-line); padding:26px; background:var(--card);}
+  .step .num{font-family:'Archivo Black'; font-size:30px; color:var(--lime); -webkit-text-stroke:1.4px var(--ink); color:transparent;}
+  .step h4{font-size:18px; margin:22px 0 0;}
+  .step p{color:var(--muted); font-size:13.5px; margin-top:8px; line-height:1.5;}
+
+  /* collage / about */
+  .collage{background:var(--bg); padding:96px 0;}
+  .collage-grid{display:grid; grid-template-columns:1fr; gap:52px; align-items:center;}
+  @media(min-width:1024px){.collage-grid{grid-template-columns:1fr 1fr;}}
+  .collage h2{font-size:clamp(30px,4.6vw,50px); margin:16px 0 0;}
+  .collage p.lead{color:var(--muted); margin-top:16px; font-size:16px; max-width:480px;}
+  .polas{position:relative; height:380px;}
+  .pola{position:absolute; background:#fff; padding:10px 10px 34px; box-shadow:var(--shadow); width:52%;}
+  .pola img{width:100%; height:170px; object-fit:cover; display:block;}
+  .pola span{position:absolute; bottom:10px; left:10px; font-family:'Archivo Black'; font-size:12px; color:#0a0a0a;}
+  .pola.p1{left:0; top:0; transform:rotate(-6deg); z-index:2;}
+  .pola.p2{right:0; top:50px; transform:rotate(5deg); z-index:3;}
+  .pola.p3{left:22%; bottom:0; transform:rotate(-3deg); z-index:1; width:46%;}
+
+  /* footer */
+  footer{background:var(--ink); color:rgba(247,246,241,.7); padding:72px 0 0;}
+  .foot-grid{display:grid; grid-template-columns:1fr; gap:40px;}
+  @media(min-width:768px){.foot-grid{grid-template-columns:2fr 1fr 1fr;}}
+  .foot-logo{font-family:'Archivo Black'; font-size:26px; color:#fff;}
+  .foot-logo b{background:var(--lime); color:#0a0a0a; padding:1px 6px; margin-left:2px;}
+  footer h4{color:#fff; font-size:13px; text-transform:uppercase; letter-spacing:.08em; margin:0 0 14px;}
+  footer .flinks a{display:block; padding:6px 0; font-size:14px;}
+  footer .flinks a:hover{color:var(--lime);}
+  .foot-bottom{border-top:1px solid rgba(247,246,241,.12); margin-top:50px; padding:22px 0; text-align:center; font-size:12px; color:rgba(247,246,241,.4);}
+
+  /* modals */
+  .modal{position:fixed; inset:0; z-index:100; background:rgba(10,10,10,.72); backdrop-filter:blur(6px); padding:16px; overflow:auto; display:none;}
+  .modal.show{display:block;}
+  .modal-panel{max-width:640px; margin:40px auto; background:var(--bg-alt); color:var(--ink); border:1px solid var(--card-line);}
+  .modal-panel.wide{max-width:860px;}
+  .modal-head{padding:22px 24px; border-bottom:1px solid var(--card-line); display:flex; justify-content:space-between; align-items:center;}
+  .modal-head h2{font-size:20px; margin:0;}
+  .close-x{font-size:24px; background:none; border:none; color:var(--ink); line-height:1;}
+  .cart-body{padding:22px 24px; max-height:50vh; overflow:auto;}
+  .cart-row{display:flex; gap:14px; padding:16px 0; border-bottom:1px solid var(--card-line); align-items:center;}
+  .cart-row img{width:74px; height:74px; object-fit:cover;}
+  .qty-btn{width:26px; height:26px; border:1px solid var(--card-line); background:transparent; color:var(--ink);}
+  .cart-foot{padding:22px 24px; border-top:1px solid var(--card-line);}
+  .cart-total{display:flex; justify-content:space-between; font-size:16px;}
+  .radio-card{border:1px solid var(--card-line); padding:14px; cursor:pointer; display:flex; flex-direction:column; gap:4px;}
+  .radio-card.checked{border-color:var(--lime); background:rgba(205,250,63,.08);}
+  .pay-note{background:rgba(205,250,63,.1); border:1px solid rgba(205,250,63,.3); padding:16px; font-size:13px; margin-top:16px; display:none;}
+  .pay-note.show{display:block;}
+  .sum-box{background:var(--bg); padding:18px; margin-top:20px;}
+  .sum-row{display:flex; justify-content:space-between; color:var(--muted); font-size:14px;}
+  .sum-row.total{border-top:1px solid var(--card-line); margin-top:10px; padding-top:10px; font-size:19px; color:var(--ink);}
+  .place-btn{margin-top:18px; width:100%; background:var(--lime); color:#0a0a0a; font-weight:900; padding:16px; border:none; text-transform:uppercase; font-size:13px; letter-spacing:.04em;}
+
+  .toast{position:fixed; bottom:24px; right:24px; z-index:200; background:var(--ink); color:var(--bg); padding:16px 20px; font-weight:700; font-size:14px; box-shadow:var(--shadow); transform:translateY(100px); opacity:0; transition:.35s;}
+  .toast.show{transform:translateY(0); opacity:1;}
+  .no-scroll{overflow:hidden;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap headbar">
+    <a href="#home" class="logo"><span>Markx</span><b>Collections</b></a>
+    <nav class="mainnav">
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#custom">Custom Printing</a>
+      <a href="#bulk">Bulk Orders</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="headicons">
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark/light theme" title="Switch theme">
+        <span class="knob" id="themeKnob">☀</span>
+      </button>
+      <button class="icon-btn" onclick="focusSearch()" aria-label="Search">⌕</button>
+      <button class="icon-btn" style="position:relative" onclick="openCart()" aria-label="Cart">
+        🛒<span class="cart-dot" id="cartCount">0</span>
+      </button>
+      <button class="icon-btn menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+    </div>
+  </div>
+  <div id="mobileMenu">
+    <a onclick="toggleMenu()" href="#home">Home</a>
+    <a onclick="toggleMenu()" href="#shop">Shop</a>
+    <a onclick="toggleMenu()" href="#custom">Custom Printing</a>
+    <a onclick="toggleMenu()" href="#bulk">Bulk Orders</a>
+    <a onclick="toggleMenu()" href="#about">About</a>
+    <a onclick="toggleMenu()" href="#contact">Contact</a>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <div id="slides">
+    <div class="hero-slide active" data-index="0">
+      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=2200&q=90" alt="Black T-shirt collection">
+    </div>
+    <div class="hero-slide" data-index="1">
+      <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=2200&q=90" alt="Fashion T-shirt">
+    </div>
+    <div class="hero-slide" data-index="2">
+      <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=2200&q=90" alt="Clothing collection">
+    </div>
+  </div>
+
+  <div class="hero-tags">
+    <div class="tag-sticker">Printed on demand for you</div>
+    <div class="tag-sticker">No minimum orders</div>
+    <div class="tag-sticker lime">Design it. Wear it. Own it.</div>
+  </div>
+
+  <div class="wrap hero-inner">
+    <span class="badge-pill" id="heroBadge">Special Offer</span>
+    <h1 id="heroTitle" class="display">CUSTOM<br><em>PRINTED</em><br>T-SHIRTS</h1>
+    <p class="lead" id="heroText">Your design. Our print. Premium T-shirts for individuals, teams, events and organizations.</p>
+    <div class="hero-ctas">
+      <a href="#shop" class="btn-primary">Shop the Drop →</a>
+      <a href="#custom" class="btn-ghost">Customize a shirt</a>
+    </div>
+  </div>
+
+  <button class="hero-nav prev" onclick="prevSlide()" aria-label="Previous slide">‹</button>
+  <button class="hero-nav next" onclick="nextSlide()" aria-label="Next slide">›</button>
+  <div class="dots">
+    <button class="dot active" onclick="goSlide(0)"></button>
+    <button class="dot" onclick="goSlide(1)"></button>
+    <button class="dot" onclick="goSlide(2)"></button>
+  </div>
+</section>
+<svg class="torn" viewBox="0 0 1200 34" preserveAspectRatio="none"><path d="M0,34 L0,14 L40,22 L85,6 L130,20 L175,4 L220,18 L265,8 L310,22 L355,10 L400,20 L445,4 L490,16 L535,6 L580,20 L625,10 L670,22 L715,6 L760,18 L805,4 L850,20 L895,8 L940,22 L985,10 L1030,18 L1075,4 L1120,20 L1160,10 L1200,18 L1200,34 Z"></path></svg>
+
+<section class="benefits">
+  <div class="wrap benefits-grid">
+    <div class="benefit"><div class="em">🚚</div><b>Cash on Delivery</b><span>Pay at your doorstep</span></div>
+    <div class="benefit"><div class="em">💳</div><b>Card Payment</b><span>Get 15% off instantly</span></div>
+    <div class="benefit"><div class="em">👕</div><b>Custom Prints</b><span>Your design, our print</span></div>
+    <div class="benefit"><div class="em">🏢</div><b>Organizations</b><span>Team & company shirts</span></div>
+    <div class="benefit"><div class="em">✓</div><b>Premium Quality</b><span>Comfort & durability</span></div>
+  </div>
+</section>
+
+<section id="shop" class="shop">
+  <div class="wrap">
+    <div class="shop-head">
+      <div>
+        <span class="eyebrow">The Drop</span>
+        <h2 class="display">Wear your style.</h2>
+        <p class="shop-sub">Premium everyday tees, custom prints and bulk-ready apparel.</p>
+      </div>
+      <div class="filters">
+        <button class="filter-btn active" onclick="filterProducts('all',this)">All</button>
+        <button class="filter-btn" onclick="filterProducts('regular',this)">Regular</button>
+        <button class="filter-btn" onclick="filterProducts('dtf',this)">DTF</button>
+        <button class="filter-btn" onclick="filterProducts('custom',this)">Custom</button>
+      </div>
+    </div>
+    <div class="search-row">
+      <input id="searchInput" oninput="renderProducts()" placeholder="Search T-shirts..." />
+    </div>
+    <div id="productsGrid" class="grid"></div>
+  </div>
+</section>
+
+<section class="promo">
+  <div class="wrap promo-row">
+    <div>
+      <span class="eyebrow">Pay by card & save</span>
+      <h3 class="display">Get 15% off your invoice.</h3>
+      <p>After card payment, send your payment screenshot with your order. If verification is possible without a screenshot, that's fine too.</p>
+    </div>
+    <button onclick="openCheckout()" class="promo-btn">Checkout now →</button>
+  </div>
+</section>
+
+<section id="custom" class="custom">
+  <div class="wrap custom-grid">
+    <div>
+      <span class="eyebrow">Your design • Our print</span>
+      <h2 class="display">Turn your idea into a T-shirt.</h2>
+      <p class="lead">Send your artwork, logo, event design or organization branding. We handle customized and DTF printing for single pieces and larger quantities.</p>
+      <div class="featcards">
+        <div class="featcard"><b>DTF Printing</b><p>Sharp, vibrant prints for custom designs.</p></div>
+        <div class="featcard"><b>Organization Shirts</b><p>Teams, staff, events and company branding.</p></div>
+      </div>
+    </div>
+    <form class="quote-form" onsubmit="submitCustom(event)">
+      <h3>Request a custom quote</h3>
+      <div class="form-grid">
+        <input class="field" id="customName" required placeholder="Your name" />
+        <input class="field" id="customPhone" required placeholder="Phone / WhatsApp" />
+        <select class="field" id="customType">
+          <option>DTF Printed</option><option>Customized Printed</option><option>Organization / Bulk</option>
+        </select>
+        <input class="field" id="customQty" type="number" min="1" value="1" placeholder="Quantity" />
+      </div>
+      <textarea class="field" id="customDetails" required rows="4" placeholder="Tell us about your design, sizes, colors or organization..."></textarea>
+      <button class="submit-btn">Send custom request</button>
+    </form>
+  </div>
+</section>
+
+<section id="bulk" class="bulk">
+  <div class="wrap">
+    <span class="eyebrow">Built for teams</span>
+    <h2 class="display">Bulk orders without the headache.</h2>
+    <p class="lead">Need customized shirts for your company, school, event, sports team or organization? Tell us the quantity and requirements and we'll prepare a quote.</p>
+    <div class="steps">
+      <div class="step"><span class="num">01</span><h4>Share requirements</h4><p>Quantity, sizes, colors, logo and print type.</p></div>
+      <div class="step"><span class="num">02</span><h4>Get your quote</h4><p>We'll review the details and prepare pricing.</p></div>
+      <div class="step"><span class="num">03</span><h4>Approve & produce</h4><p>Once approved, production moves forward.</p></div>
+    </div>
+    <a href="#custom" class="btn-primary" style="display:inline-block; margin-top:40px;">Request bulk quote →</a>
+  </div>
+</section>
+
+<section id="about" class="collage">
+  <div class="wrap collage-grid">
+    <div>
+      <span class="eyebrow">Why MarkxCollections</span>
+      <h2 class="display">Made for you.<br>Printed on demand.</h2>
+      <p class="lead">From one custom T-shirt to organization-wide orders, MarkxCollections is designed around quality, flexibility and a smooth customer experience. No huge minimums, no long waits — just your idea, printed right.</p>
+    </div>
+    <div class="polas">
+      <div class="pola p1"><img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80" alt="Custom tee"><span>DREAM. PLAN. DO.</span></div>
+      <div class="pola p2"><img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=600&q=80" alt="Logo tee"><span>MARKX</span></div>
+      <div class="pola p3"><img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Graphic tee"><span>QUALITY YOU FEEL</span></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap foot-grid">
+    <div>
+      <div class="foot-logo">Markx<b>Collections</b></div>
+      <p style="max-width:380px; margin-top:16px; font-size:14px;">Premium T-shirts, DTF printing and customized apparel for individuals, teams and organizations.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <div class="flinks">
+        <a href="#shop">Shop</a>
+        <a href="#custom">Custom Printing</a>
+        <a href="#bulk">Bulk Orders</a>
+      </div>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <div class="flinks">
+        <a href="#" style="pointer-events:none;">WhatsApp: +92 300 0000000</a>
+        <a href="#" style="pointer-events:none;">Email: hello@markxcollections.com</a>
+        <a href="#" style="pointer-events:none;">Pakistan</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">© 2026 MarkxCollections. Demo storefront.</div>
+</footer>
+
+<div id="cartModal" class="modal">
+  <div class="modal-panel">
+    <div class="modal-head"><h2>Your Cart</h2><button class="close-x" onclick="closeCart()">×</button></div>
+    <div id="cartItems" class="cart-body"></div>
+    <div class="cart-foot">
+      <div class="cart-total"><span>Subtotal</span><b id="cartTotal">Rs. 0</b></div>
+      <button onclick="openCheckout()" class="place-btn">Proceed to checkout</button>
+    </div>
+  </div>
+</div>
+
+<div id="productModal" class="modal">
+  <div class="modal-panel wide"><div id="productDetail"></div></div>
+</div>
+
+<div id="checkoutModal" class="modal">
+  <div class="modal-panel">
+    <div class="modal-head"><h2>Checkout</h2><button class="close-x" onclick="closeCheckout()">×</button></div>
+    <form onsubmit="placeOrder(event)" style="padding:24px;">
+      <div class="form-grid">
+        <input required id="buyerName" class="field" placeholder="Full name" />
+        <input required id="buyerPhone" class="field" placeholder="Phone / WhatsApp" />
+        <input required id="buyerAddress" class="field" style="grid-column:1/-1" placeholder="Delivery address" />
+      </div>
+      <div class="form-grid" style="margin-top:20px;">
+        <label class="radio-card checked" id="codCard"><input checked type="radio" name="payment" value="cod" onchange="updateCheckout()" style="margin-bottom:2px;"> <b>Cash on Delivery</b><span style="font-size:12px; color:var(--muted);">Pay at your doorstep</span></label>
+        <label class="radio-card" id="cardCard"><input type="radio" name="payment" value="card" onchange="updateCheckout()" style="margin-bottom:2px;"> <b>Card Payment</b><span style="font-size:12px; color:var(--lime-ink); font-weight:700;">15% off invoice</span></label>
+      </div>
+      <div id="paymentInfo" class="pay-note">
+        <b>Card payment verification</b>
+        <p style="margin-top:6px;">In a production version, connect your payment gateway here. You can also add a payment screenshot upload. The demo accepts the order without requiring a screenshot.</p>
+        <input type="file" accept="image/*" style="margin-top:10px; width:100%; font-size:13px;" />
+      </div>
+      <div class="sum-box">
+        <div class="sum-row"><span>Subtotal</span><span id="checkoutSubtotal">Rs. 0</span></div>
+        <div class="sum-row"><span>Card discount</span><span id="checkoutDiscount">- Rs. 0</span></div>
+        <div class="sum-row total"><b>Total</b><b id="checkoutTotal">Rs. 0</b></div>
+      </div>
+      <button class="place-btn">Place order</button>
+    </form>
+  </div>
+</div>
+
+<div id="toast" class="toast">Added to cart</div>
+
+<script>
+const products = [
+  {id:1,name:"Classic Black Tee",cat:"regular",price:1499,img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",tag:"BESTSELLER",desc:"Premium everyday black cotton tee."},
+  {id:2,name:"Essential White Tee",cat:"regular",price:1399,img:"https://images.unsplash.com/photo-1583743814966-8936f37f4678?auto=format&fit=crop&w=900&q=85",tag:"NEW",desc:"Clean white essential for every wardrobe."},
+  {id:3,name:"Good Vibes DTF Tee",cat:"dtf",price:1899,img:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=900&q=85",tag:"DTF PRINT",desc:"Statement graphic with premium DTF finish."},
+  {id:4,name:"Urban Graphic Tee",cat:"dtf",price:1999,img:"https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=85",tag:"TRENDING",desc:"Street-inspired graphic T-shirt."},
+  {id:5,name:"Your Design Custom Tee",cat:"custom",price:2199,img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85",tag:"CUSTOM",desc:"Upload your design and make it yours."},
+  {id:6,name:"Minimal Logo Tee",cat:"custom",price:2099,img:"https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=900&q=85",tag:"CUSTOM",desc:"Minimal logo printing for personal or brand use."},
+  {id:7,name:"Oversized Street Tee",cat:"regular",price:2299,img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85",tag:"OVERSIZED",desc:"Relaxed oversized fit for a modern silhouette."},
+  {id:8,name:"Team / Organization Tee",cat:"custom",price:0,img:"https://stacktees.pk/wp-content/uploads/2025/03/Customize-Design-T-Shirts-Design-Black.png",tag:"BULK QUOTE",desc:"Custom organization and team shirts. Request a quote."}
+];
+
+let cart = [];
+let activeFilter = "all";
+let slide = 0;
+let timer;
+
+const money = n => "Rs. " + n.toLocaleString("en-PK");
+
+function renderProducts(){
+  const q = document.getElementById("searchInput").value.toLowerCase();
+  const grid = document.getElementById("productsGrid");
+  const list = products.filter(p => (activeFilter==="all" || p.cat===activeFilter) && p.name.toLowerCase().includes(q));
+  grid.innerHTML = list.map(p => `
+    <article class="pcard">
+      <div class="imgwrap">
+        <img src="${p.img}" alt="${p.name}">
+        <span class="ptag">${p.tag}</span>
+        <button class="pexpand" onclick="openProduct(${p.id})" aria-label="View ${p.name}">↗</button>
+      </div>
+      <div class="pbody">
+        <p class="pcat">${p.cat}</p>
+        <h3 class="pname">${p.name}</h3>
+        <p class="pdesc">${p.desc}</p>
+        <div class="prow">
+          <b class="pprice">${p.price ? money(p.price) : "Quote"}</b>
+          <button class="pbtn" onclick="addToCart(${p.id})">${p.price ? "Add to cart" : "Request quote"}</button>
+        </div>
+      </div>
+    </article>`).join("") || `<div class="empty-state">No products found.</div>`;
+}
+
+function filterProducts(cat, el){
+  activeFilter = cat;
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+  el.classList.add("active");
+  renderProducts();
+}
+function focusSearch(){ document.getElementById("searchInput").focus(); document.getElementById("shop").scrollIntoView({behavior:"smooth"}); }
+function addToCart(id){
+  const p=products.find(x=>x.id===id);
+  if(!p.price){ document.getElementById("custom").scrollIntoView({behavior:"smooth"}); showToast("Use the custom quote form for bulk/custom orders"); return; }
+  const item=cart.find(x=>x.id===id);
+  item ? item.qty++ : cart.push({id,qty:1});
+  updateCartCount(); showToast("Added to cart");
+}
+function updateCartCount(){
+  document.getElementById("cartCount").textContent=cart.reduce((a,x)=>a+x.qty,0);
+}
+function openCart(){
+  renderCart(); document.getElementById("cartModal").classList.add("show"); document.body.classList.add("no-scroll");
+}
+function closeCart(){document.getElementById("cartModal").classList.remove("show"); document.body.classList.remove("no-scroll");}
+function renderCart(){
+  const box=document.getElementById("cartItems");
+  if(!cart.length){box.innerHTML='<div style="padding:50px 0; text-align:center; color:var(--muted);">Your cart is empty.</div>'; document.getElementById("cartTotal").textContent=money(0); return;}
+  box.innerHTML=cart.map(i=>{const p=products.find(x=>x.id===i.id);return `<div class="cart-row"><img src="${p.img}"><div style="flex:1;"><b>${p.name}</b><div style="color:var(--muted); font-size:13px;">${money(p.price)}</div><div style="display:flex; align-items:center; gap:10px; margin-top:8px;"><button class="qty-btn" onclick="changeQty(${p.id},-1)">−</button><span>${i.qty}</span><button class="qty-btn" onclick="changeQty(${p.id},1)">+</button></div></div><b>${money(p.price*i.qty)}</b></div>`}).join("");
+  document.getElementById("cartTotal").textContent=money(cart.reduce((s,i)=>s+products.find(p=>p.id===i.id).price*i.qty,0));
+}
+function changeQty(id,d){const i=cart.find(x=>x.id===id);i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x.id!==id);updateCartCount();renderCart();}
+function openProduct(id){
+  const p=products.find(x=>x.id===id);
+  document.getElementById("productDetail").innerHTML=`<div style="display:grid; grid-template-columns:1fr; "><img src="${p.img}" style="width:100%; height:340px; object-fit:cover;"><div style="padding:30px;"><span style="font-size:11px; font-weight:900; letter-spacing:.1em; color:var(--muted); text-transform:uppercase;">${p.tag}</span><h2 style="font-size:30px; margin:10px 0 0;">${p.name}</h2><p style="color:var(--muted); margin-top:12px;">${p.desc}</p><div style="font-size:24px; font-weight:900; margin-top:20px;">${p.price?money(p.price):"Bulk Quote"}</div><div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:24px;"><button onclick="addToCart(${p.id});closeProduct()" class="pbtn" style="padding:14px;">Add to cart</button><button onclick="closeProduct()" style="border:1px solid var(--card-line); background:transparent; color:var(--ink); font-weight:800; padding:14px; text-transform:uppercase; font-size:12px;">Close</button></div><p style="font-size:12px; color:var(--muted); margin-top:16px;">Single piece available. Contact us for bulk quantity and organization customization.</p></div></div>`;
+  document.getElementById("productModal").classList.add("show"); document.body.classList.add("no-scroll");
+}
+function closeProduct(){document.getElementById("productModal").classList.remove("show");document.body.classList.remove("no-scroll");}
+function openCheckout(){closeCart();updateCheckout();document.getElementById("checkoutModal").classList.add("show");document.body.classList.add("no-scroll");}
+function closeCheckout(){document.getElementById("checkoutModal").classList.remove("show");document.body.classList.remove("no-scroll");}
+function updateCheckout(){
+  const sub=cart.reduce((s,i)=>s+products.find(p=>p.id===i.id).price*i.qty,0);
+  const isCard=document.querySelector('input[name="payment"]:checked')?.value==="card";
+  document.getElementById("codCard").classList.toggle("checked", !isCard);
+  document.getElementById("cardCard").classList.toggle("checked", isCard);
+  const discount=isCard?Math.round(sub*.15):0;
+  document.getElementById("checkoutSubtotal").textContent=money(sub);
+  document.getElementById("checkoutDiscount").textContent="- "+money(discount);
+  document.getElementById("checkoutTotal").textContent=money(sub-discount);
+  document.getElementById("paymentInfo").classList.toggle("show",isCard);
+}
+function placeOrder(e){
+  e.preventDefault();
+  if(!cart.length){showToast("Add a product before checkout");return;}
+  const isCard=document.querySelector('input[name="payment"]:checked').value==="card";
+  const total=cart.reduce((s,i)=>s+products.find(p=>p.id===i.id).price*i.qty,0);
+  showToast(`Demo order placed — ${money(isCard?Math.round(total*.85):total)}`);
+  cart=[];updateCartCount();closeCheckout();
+}
+function submitCustom(e){e.preventDefault();showToast("Custom request submitted — demo only");e.target.reset();}
+function showToast(t){const el=document.getElementById("toast");el.textContent=t;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),2800);}
+function toggleMenu(){document.getElementById("mobileMenu").classList.toggle("open");}
+
+const heroData=[
+  ["Special Offer","CUSTOM<br><em>PRINTED</em><br>T-SHIRTS","Your design. Our print. Premium T-shirts for individuals, teams, events and organizations."],
+  ["15% off on card","PAY BY CARD<br><em>SAVE 15%</em>","Choose card payment at checkout and get 15% off your invoice. Payment verification can be handled with or without a screenshot."],
+  ["Built for teams","BULK<br><em>ORDERS</em>","Need shirts for your organization? Get custom printing, team branding and bulk quantities from one piece to large orders."]
+];
+function renderSlide(){
+  document.querySelectorAll(".hero-slide").forEach((s,i)=>s.classList.toggle("active", i===slide));
+  document.getElementById("heroBadge").textContent=heroData[slide][0];
+  document.getElementById("heroTitle").innerHTML=heroData[slide][1];
+  document.getElementById("heroText").textContent=heroData[slide][2];
+  document.querySelectorAll(".dot").forEach((d,i)=>d.classList.toggle("active", i===slide));
+}
+function nextSlide(){slide=(slide+1)%3;renderSlide();restartTimer();}
+function prevSlide(){slide=(slide+2)%3;renderSlide();restartTimer();}
+function goSlide(i){slide=i;renderSlide();restartTimer();}
+function restartTimer(){clearInterval(timer);timer=setInterval(nextSlide,5000);}
+
+/* theme toggle — in-memory only for this session */
+function toggleTheme(){
+  const html=document.documentElement;
+  const isDark = html.getAttribute("data-theme")==="dark";
+  html.setAttribute("data-theme", isDark ? "light" : "dark");
+  document.getElementById("themeKnob").textContent = isDark ? "☀" : "☾";
+}
+
+renderProducts();
+restartTimer();
+</script>
+</body>
+</html>
