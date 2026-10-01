@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop All T-Shirts | MarkxCollections</title>
+<meta name="description" content="Browse plain, DTF printed, customized and corporate T-shirts. Filter by category, size, color and price.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body data-nav="shop">
+
+<div id="site-header"></div>
+
+<div class="page-head">
+  <div class="container">
+    <span class="eyebrow">THE FULL RANGE</span>
+    <h1 style="font-size:2.6rem;">Shop All</h1>
+    <div class="crumbs"><a href="index.html">Home</a> / Shop</div>
+  </div>
+</div>
+
+<main class="section section-tight">
+  <div class="container">
+    <div class="shop-layout">
+      <aside class="shop-sidebar" id="filterDrawer">
+        <button class="btn btn-ghost filter-drawer-close" id="filterDrawerClose">Close Filters &times;</button>
+
+        <div class="filter-block">
+          <h4>Categories</h4>
+          <label class="filter-opt"><input type="radio" name="filterCategory" value="All" data-filter-category checked> All</label>
+          <label class="filter-opt"><input type="radio" name="filterCategory" value="Plain" data-filter-category> Plain</label>
+          <label class="filter-opt"><input type="radio" name="filterCategory" value="Oversized" data-filter-category> Oversized</label>
+          <label class="filter-opt"><input type="radio" name="filterCategory" value="DTF Printed" data-filter-category> DTF Printed</label>
+          <label class="filter-opt"><input type="radio" name="filterCategory" value="Customized" data-filter-category> Customized</label>
+          <label class="filter-opt"><input type="radio" name="filterCategory" value="Corporate" data-filter-category> Corporate</label>
+          <label class="filter-opt"><input type="radio" name="filterCategory" value="Trousers" data-filter-category> Trousers</label>
+        </div>
+
+        <div class="filter-block">
+          <h4>Size</h4>
+          <label class="filter-opt"><input type="checkbox" value="S" data-filter-size> S</label>
+          <label class="filter-opt"><input type="checkbox" value="M" data-filter-size> M</label>
+          <label class="filter-opt"><input type="checkbox" value="L" data-filter-size> L</label>
+          <label class="filter-opt"><input type="checkbox" value="XL" data-filter-size> XL</label>
+          <label class="filter-opt"><input type="checkbox" value="XXL" data-filter-size> XXL</label>
+        </div>
+
+        <div class="filter-block">
+          <h4>Color</h4>
+          <label class="filter-opt"><input type="checkbox" value="Black" data-filter-color> Black</label>
+          <label class="filter-opt"><input type="checkbox" value="White" data-filter-color> White</label>
+          <label class="filter-opt"><input type="checkbox" value="Red" data-filter-color> Red</label>
+          <label class="filter-opt"><input type="checkbox" value="Navy" data-filter-color> Navy</label>
+          <label class="filter-opt"><input type="checkbox" value="Grey" data-filter-color> Grey</label>
+        </div>
+
+        <div class="filter-block" style="border-bottom:none;">
+          <h4>Price</h4>
+          <input type="range" id="priceRange" min="1000" max="2500" step="50">
+          <div class="range-row"><span>Rs. 1,000</span><span id="priceRangeVal">Rs. 2,500</span></div>
+        </div>
+      </aside>
+
+      <div>
+        <div class="shop-toolbar">
+          <button class="btn btn-ghost filter-drawer-btn" id="filterDrawerBtn"><i class="fa-solid fa-sliders"></i> Filters</button>
+          <span id="shopCount" style="font-size:.88rem;color:#57523f;">Showing 12 products</span>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;">
+            Sort By
+            <select id="sortSelect">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="newest">Newest</option>
+              <option value="rating">Best Rated</option>
+            </select>
+          </label>
+        </div>
+        <div class="product-grid" id="shopGrid"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/app.js"></script>
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/shop.js"></script>
+</body>
+</html>

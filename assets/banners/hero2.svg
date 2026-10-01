@@ -1,0 +1,23 @@
+<svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="210" cy="365.0" rx="151.9" ry="23.25" fill="#241E17" opacity="0.10"/>
+    <defs><linearGradient id="grad36" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8d8576"/>
+      <stop offset="55%" stop-color="#6E6350"/>
+      <stop offset="100%" stop-color="#4f4739"/>
+    </linearGradient></defs>
+    <g transform="translate(210,210) scale(1.55)">
+      <path d="M -68,-58 L -108,-26 L -82,14 L -54,-6 L -54,92 L 54,92 L 54,-6 L 82,14 L 108,-26 L 68,-58
+               C 52,-80 24,-92 0,-92 C -24,-92 -52,-80 -68,-58 Z"
+            fill="url(#grad36)" stroke="#3c362c" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M -28,-90 C -18,-72 18,-72 28,-90" fill="none" stroke="#3c362c" stroke-width="2.5"/>
+      <path d="M -28,-90 C -18,-74 18,-74 28,-90" fill="none" stroke="#a0998d" stroke-width="1" stroke-dasharray="1.5 2.5" opacity="0.8"/>
+      <path d="M -54,-4 L -54,86" stroke="#3c362c" stroke-opacity="0.28" stroke-width="1.4" stroke-dasharray="1.5 2.5"/>
+      <path d="M 54,-4 L 54,86" stroke="#3c362c" stroke-opacity="0.28" stroke-width="1.4" stroke-dasharray="1.5 2.5"/>
+      <path d="M -20,-2 C -10,4 10,4 20,-2" fill="none" stroke="#a8a196" stroke-width="1.2" opacity="0.5"/>
+    </g><g transform="translate(210,210) scale(1.55)"><rect x="-30" y="-4" width="60" height="62" rx="3" fill="#B87A3D" opacity="0.95"/><rect x="-30" y="-4" width="60" height="10" rx="3" fill="#c99b6d" opacity="0.5"/></g>
+  <g transform="translate(300,110) rotate(35)">
+      <rect x="-6" y="-40" width="12" height="70" rx="3" fill="#FCF9F1" stroke="#423b30" stroke-width="2"/>
+      <polygon points="-6,30 6,30 0,44" fill="#584f40" stroke="#423b30" stroke-width="1.5"/>
+      <rect x="-6" y="-40" width="12" height="12" fill="#B87A3D"/>
+    </g>
+</svg>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | MarkxCollections</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="admin-shell">
+
+<div class="admin-topbar">
+  <a href="index.html" class="logo">Markx<span>Collections</span> <span style="font-size:.7rem;opacity:.7;">Admin</span></a>
+  <div class="admin-topbar-right">
+    <span><i class="fa-regular fa-user"></i> admin@markxcollections.pk</span>
+    <a href="index.html" style="color:var(--bone);"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Store</a>
+    <button class="btn btn-sm btn-ghost" id="adminLogoutBtn" style="border-color:var(--bone);color:var(--bone);background:transparent;">Logout</button>
+  </div>
+</div>
+
+<main class="admin-main">
+  <div style="margin-bottom:28px;">
+    <span class="eyebrow">Demo Mode — No Backend Or Database</span>
+    <h1 style="font-size:2rem;margin-top:8px;">Order Dashboard</h1>
+    <p class="lede" style="margin-top:8px;">Everything below is read directly from this browser's local storage — the same data the storefront writes when a customer checks out, submits a custom request, or requests a bulk quote. Open the store in this browser, place a test order, then come back here.</p>
+  </div>
+
+  <div class="admin-stats" id="adminStats"></div>
+
+  <div class="admin-tabs">
+    <button class="admin-tab-btn active" data-admin-tab="orders">Orders</button>
+    <button class="admin-tab-btn" data-admin-tab="custom">Custom Requests</button>
+    <button class="admin-tab-btn" data-admin-tab="bulk">Bulk Quotes</button>
+    <button class="admin-tab-btn" data-admin-tab="newsletter">Newsletter</button>
+  </div>
+
+  <!-- ORDERS -->
+  <section class="admin-panel active" data-admin-panel="orders">
+    <div class="admin-panel-head">
+      <h3 style="font-size:1.1rem;">Customer Orders</h3>
+      <button class="btn btn-ghost btn-sm" id="resetDemoBtn"><i class="fa-solid fa-rotate-left"></i> Reset Demo Data</button>
+    </div>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead><tr><th>Order #</th><th>Date</th><th>Customer</th><th>Payment</th><th>Items</th><th>Total</th><th>Status</th><th></th></tr></thead>
+        <tbody id="ordersTbody"></tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="ordersEmpty" style="display:none;padding:60px 0;">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <h2 style="font-size:1.4rem;">No Orders Yet</h2>
+      <p>Place a test order on the storefront to see it appear here.</p>
+      <a href="shop.html" class="btn btn-accent">Go To Shop</a>
+    </div>
+  </section>
+
+  <!-- CUSTOM REQUESTS -->
+  <section class="admin-panel" data-admin-panel="custom">
+    <div class="admin-panel-head"><h3 style="font-size:1.1rem;">Custom T-Shirt Requests</h3></div>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead><tr><th>Request #</th><th>Date</th><th>Contact</th><th>T-Shirt</th><th>Color</th><th>Printing</th><th>Size</th><th>Qty</th><th></th></tr></thead>
+        <tbody id="customTbody"></tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="customEmpty" style="display:none;padding:60px 0;">
+      <i class="fa-solid fa-palette"></i>
+      <h2 style="font-size:1.4rem;">No Custom Requests Yet</h2>
+      <p>Submissions from the Customize page will appear here.</p>
+      <a href="customize.html" class="btn btn-accent">Go To Customize</a>
+    </div>
+  </section>
+
+  <!-- BULK REQUESTS -->
+  <section class="admin-panel" data-admin-panel="bulk">
+    <div class="admin-panel-head"><h3 style="font-size:1.1rem;">Bulk & Organization Quote Requests</h3></div>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead><tr><th>Request #</th><th>Date</th><th>Organization</th><th>Contact</th><th>T-Shirt</th><th>Printing</th><th>Quantity</th><th></th></tr></thead>
+        <tbody id="bulkTbody"></tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="bulkEmpty" style="display:none;padding:60px 0;">
+      <i class="fa-solid fa-people-group"></i>
+      <h2 style="font-size:1.4rem;">No Bulk Requests Yet</h2>
+      <p>Submissions from the Bulk Orders page will appear here.</p>
+      <a href="bulk-order.html" class="btn btn-accent">Go To Bulk Orders</a>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="admin-panel" data-admin-panel="newsletter">
+    <div class="admin-panel-head"><h3 style="font-size:1.1rem;">Newsletter Subscribers</h3></div>
+    <div id="newsletterList"></div>
+    <div class="empty-state" id="newsletterEmpty" style="display:none;padding:60px 0;">
+      <i class="fa-solid fa-envelope"></i>
+      <h2 style="font-size:1.4rem;">No Subscribers Yet</h2>
+      <p>Emails submitted through the newsletter form will appear here.</p>
+    </div>
+  </section>
+</main>
+
+<!-- ORDER DETAIL MODAL -->
+<div class="modal-overlay" id="orderDetailModal">
+  <div class="modal-box" style="max-width:640px;padding:34px;">
+    <button class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div id="orderModalBody"></div>
+  </div>
+</div>
+
+<!-- CUSTOM REQUEST DETAIL MODAL -->
+<div class="modal-overlay" id="customDetailModal">
+  <div class="modal-box" style="max-width:520px;padding:34px;">
+    <button class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div id="customModalBody"></div>
+  </div>
+</div>
+
+<!-- BULK REQUEST DETAIL MODAL -->
+<div class="modal-overlay" id="bulkDetailModal">
+  <div class="modal-box" style="max-width:520px;padding:34px;">
+    <button class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div id="bulkModalBody"></div>
+  </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Your Own T-Shirt | MarkxCollections</title>
+<meta name="description" content="Design your own custom printed T-shirt with MarkxCollections. Choose style, color, printing type and upload your artwork.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body data-nav="customize">
+
+<div id="site-header"></div>
+
+<div class="page-head">
+  <div class="container">
+    <span class="eyebrow">MAKE IT YOURS</span>
+    <h1 style="font-size:2.6rem;">Design Your Own T-Shirt</h1>
+    <p class="lede" style="margin-top:10px;">Bring your idea to life.</p>
+    <div class="crumbs"><a href="index.html">Home</a> / Customize</div>
+  </div>
+</div>
+
+<main class="section">
+  <div class="container">
+    <div class="customize-layout">
+      <form id="customizeForm">
+
+        <div class="field">
+          <h4 style="margin-bottom:14px;">Select T-Shirt</h4>
+          <div class="chip-group" id="tshirtChips">
+            <button type="button" class="chip selected" data-value="Round Neck">Round Neck</button>
+            <button type="button" class="chip" data-value="Oversized">Oversized</button>
+            <button type="button" class="chip" data-value="Polo">Polo</button>
+            <button type="button" class="chip" data-value="Full Sleeve">Full Sleeve</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <h4 style="margin-bottom:14px;">Select Color</h4>
+          <div class="chip-group" id="colorChips">
+            <button type="button" class="chip swatch-chip selected" data-value="Black"><span class="swatch-dot" style="background:#2B241C;"></span>Black</button>
+            <button type="button" class="chip swatch-chip" data-value="White"><span class="swatch-dot" style="background:#F3ECDD;"></span>White</button>
+            <button type="button" class="chip swatch-chip" data-value="Red"><span class="swatch-dot" style="background:#B4502F;"></span>Red</button>
+            <button type="button" class="chip swatch-chip" data-value="Navy"><span class="swatch-dot" style="background:#3C4F63;"></span>Navy</button>
+            <button type="button" class="chip swatch-chip" data-value="Grey"><span class="swatch-dot" style="background:#ABA089;"></span>Grey</button>
+            <button type="button" class="chip swatch-chip" data-value="Custom"><span class="swatch-dot" style="background:#C9BB98;"></span>Custom</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <h4 style="margin-bottom:14px;">Select Printing Type</h4>
+          <div class="chip-group" id="printingChips">
+            <button type="button" class="chip selected" data-value="DTF Printing">DTF Printing</button>
+            <button type="button" class="chip" data-value="Front Print">Front Print</button>
+            <button type="button" class="chip" data-value="Back Print">Back Print</button>
+            <button type="button" class="chip" data-value="Front + Back">Front + Back</button>
+            <button type="button" class="chip" data-value="Logo Printing">Logo Printing</button>
+            <button type="button" class="chip" data-value="Custom Artwork">Custom Artwork</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <h4 style="margin-bottom:14px;">Upload Design</h4>
+          <div class="upload-zone" id="uploadZone">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p><strong>Drag &amp; Drop Your Design Here</strong></p>
+            <p style="font-size:.82rem;color:#77715f;margin-top:4px;">or Browse Files (PNG, JPG, WEBP)</p>
+            <input type="file" id="uploadInput" accept="image/png,image/jpeg,image/jpg,image/webp" hidden>
+          </div>
+          <div class="upload-preview" id="uploadPreview"></div>
+        </div>
+
+        <div class="field">
+          <label for="customText">Custom Text</label>
+          <input type="text" id="customText" placeholder="Enter your custom text" maxlength="24">
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label>Quantity</label>
+            <div class="qty-stepper" id="cQtyStepper">
+              <button type="button" data-c-qty="-1">&minus;</button><span id="cQty">1</span><button type="button" data-c-qty="1">+</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Size</label>
+            <div class="chip-group" id="sizeChips">
+              <button type="button" class="chip" data-value="S">S</button>
+              <button type="button" class="chip selected" data-value="M">M</button>
+              <button type="button" class="chip" data-value="L">L</button>
+              <button type="button" class="chip" data-value="XL">XL</button>
+              <button type="button" class="chip" data-value="XXL">XXL</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="customNotes">Additional Instructions</label>
+          <textarea id="customNotes" rows="3" placeholder="Tell us anything we should know about your design..."></textarea>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label>Your Name <span class="req">*</span></label>
+            <input type="text" id="customContactName" placeholder="Full name">
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" id="customContactPhone" placeholder="03XX-XXXXXXX">
+            <span class="field-error"></span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-accent btn-block">Request Custom Order</button>
+      </form>
+
+      <div class="tee-preview">
+        <span class="eyebrow">LIVE PREVIEW</span>
+        <div class="tee-mock" style="margin-top:18px;position:relative;">
+          <div id="teeMock"></div>
+          <div class="tee-mock-text" id="teeMockText"></div>
+          <img class="tee-mock-img" id="teeMockImg" style="display:none;" alt="Uploaded design preview">
+        </div>
+        <p id="previewMeta" style="margin-top:16px;font-size:.85rem;color:#57523f;"></p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<div class="modal-overlay" id="customSuccessModal">
+  <div class="modal-box modal-sm">
+    <button class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <i class="fa-solid fa-circle-check" style="font-size:2.6rem;color:var(--accent);margin-bottom:16px;"></i>
+    <h3 style="text-transform:none;font-family:var(--font-body);font-size:1.3rem;">Customization Request Submitted</h3>
+    <p class="lede" style="margin:14px auto;">Your request has been prepared. Our team can review the design and contact you.</p>
+    <a href="index.html" class="btn btn-solid btn-block">Back To Home</a>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/customize.js"></script>
+</body>
+</html>

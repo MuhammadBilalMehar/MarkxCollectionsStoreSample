@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | MarkxCollections</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  body{ background: var(--charcoal); min-height:100vh; display:flex; align-items:center; justify-content:center; }
+  .admin-login-box{ width:100%; max-width:400px; background:var(--paper); border-radius: var(--radius); padding: 44px 36px; margin: 24px; }
+  .admin-login-box .logo{ display:block; text-align:center; margin-bottom: 8px; }
+  .demo-note{ background: var(--paper-dim); border:1px solid var(--line); border-radius: var(--radius-tag); padding: 12px 14px; font-size:.8rem; color:#58503F; margin-bottom: 22px; line-height:1.6; }
+  .demo-note strong{ display:block; margin-bottom:2px; }
+</style>
+</head>
+<body>
+
+<div class="admin-login-box">
+  <a href="index.html" class="logo">Markx<span>Collections</span></a>
+  <p style="text-align:center;font-size:.8rem;color:#8a8268;text-transform:uppercase;letter-spacing:.1em;margin-bottom:30px;">Admin Dashboard</p>
+
+  <div class="demo-note">
+    <strong>Demo mode</strong>
+    This is a frontend-only demo — no real backend or database. Use the credentials below to sign in.<br>
+    Email: <strong>admin@markxcollections.pk</strong><br>
+    Password: <strong>admin123</strong>
+  </div>
+
+  <form id="adminLoginForm">
+    <div class="field">
+      <label>Email</label>
+      <input type="email" id="adminEmail" placeholder="admin@markxcollections.pk" value="admin@markxcollections.pk">
+      <span class="field-error"></span>
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="adminPassword" placeholder="Enter password" value="admin123">
+      <span class="field-error"></span>
+    </div>
+    <p id="adminLoginError" style="color:#A63B1F;font-size:.85rem;font-weight:600;margin-bottom:14px;min-height:18px;"></p>
+    <button type="submit" class="btn btn-accent btn-block">Sign In</button>
+  </form>
+  <a href="index.html" style="display:block;text-align:center;margin-top:20px;font-size:.82rem;color:#8a8268;">&larr; Back to store</a>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="860" viewBox="0 0 700 860">
+  <rect width="700" height="860" fill="#FCF9F1"/>
+  <ellipse cx="350.0" cy="511.2" rx="147.0" ry="22.5" fill="#241E17" opacity="0.10"/>
+    <defs><linearGradient id="grad29" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#667585"/>
+      <stop offset="55%" stop-color="#3C4F63"/>
+      <stop offset="100%" stop-color="#2b3847"/>
+    </linearGradient></defs>
+    <g transform="translate(350.0,361.2) scale(1.5)">
+      <path d="M -68,-58 L -108,-26 L -82,14 L -54,-6 L -54,92 L 54,92 L 54,-6 L 82,14 L 108,-26 L 68,-58
+               C 52,-80 24,-92 0,-92 C -24,-92 -52,-80 -68,-58 Z"
+            fill="url(#grad29)" stroke="#212b36" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M -28,-90 C -18,-72 18,-72 28,-90" fill="none" stroke="#212b36" stroke-width="2.5"/>
+      <path d="M -28,-90 C -18,-74 18,-74 28,-90" fill="none" stroke="#808c99" stroke-width="1" stroke-dasharray="1.5 2.5" opacity="0.8"/>
+      <path d="M -54,-4 L -54,86" stroke="#212b36" stroke-opacity="0.28" stroke-width="1.4" stroke-dasharray="1.5 2.5"/>
+      <path d="M 54,-4 L 54,86" stroke="#212b36" stroke-opacity="0.28" stroke-width="1.4" stroke-dasharray="1.5 2.5"/>
+      <path d="M -20,-2 C -10,4 10,4 20,-2" fill="none" stroke="#8a95a1" stroke-width="1.2" opacity="0.5"/>
+    </g>
+</svg>

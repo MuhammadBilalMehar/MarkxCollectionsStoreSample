@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | MarkxCollections</title>
+<meta name="description" content="Get in touch with MarkxCollections for orders, custom printing questions and bulk quotes.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body data-nav="contact">
+
+<div id="site-header"></div>
+
+<div class="page-head">
+  <div class="container">
+    <span class="eyebrow">WE'D LOVE TO HEAR FROM YOU</span>
+    <h1 style="font-size:2.6rem;">Get In Touch</h1>
+    <div class="crumbs"><a href="index.html">Home</a> / Contact</div>
+  </div>
+</div>
+
+<main class="section">
+  <div class="container">
+    <div class="feature-grid" style="margin-bottom:60px;">
+      <div class="feature-cell"><i class="fa-solid fa-phone feature-icon"></i><h3>Phone</h3><p>+92 300 1234567</p></div>
+      <div class="feature-cell"><i class="fa-brands fa-whatsapp feature-icon"></i><h3>WhatsApp</h3><p>+92 300 1234567</p></div>
+      <div class="feature-cell"><i class="fa-solid fa-envelope feature-icon"></i><h3>Email</h3><p>hello@markxcollections.pk</p></div>
+      <div class="feature-cell"><i class="fa-solid fa-location-dot feature-icon"></i><h3>Location</h3><p>Lahore, Pakistan</p></div>
+    </div>
+
+    <div class="split-two">
+      <div>
+        <span class="eyebrow">SEND A MESSAGE</span>
+        <h2 style="font-size:1.9rem;margin:10px 0 24px;">Send Us A Message</h2>
+        <form id="contactForm">
+          <div class="form-grid">
+            <div class="field">
+              <label>Name <span class="req">*</span></label>
+              <input type="text" id="contactName" placeholder="Your full name">
+              <span class="field-error"></span>
+            </div>
+            <div class="field">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" id="contactEmail" placeholder="you@example.com">
+              <span class="field-error"></span>
+            </div>
+            <div class="field">
+              <label>Phone</label>
+              <input type="tel" id="contactPhone" placeholder="03XX-XXXXXXX">
+            </div>
+            <div class="field">
+              <label>Subject <span class="req">*</span></label>
+              <input type="text" id="contactSubject" placeholder="What's this about?">
+              <span class="field-error"></span>
+            </div>
+            <div class="field full">
+              <label>Message <span class="req">*</span></label>
+              <textarea id="contactMessage" rows="5" placeholder="Tell us more..."></textarea>
+              <span class="field-error"></span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-accent" id="contactSubmitBtn">Send Message</button>
+          <p id="contactSuccessNote" style="margin-top:14px;font-weight:600;color:var(--accent-deep);"></p>
+        </form>
+      </div>
+
+      <div id="faq">
+        <span class="eyebrow">FAQ</span>
+        <h2 style="font-size:1.9rem;margin:10px 0 24px;">Frequently Asked</h2>
+        <div style="border-top:1px solid var(--line);">
+          <div style="padding:18px 0;border-bottom:1px solid var(--line);"><strong>Do you accept single-piece orders?</strong><p style="margin-top:6px;color:#57523f;font-size:.92rem;">Yes — plain, DTF printed and customized T-shirts can all be ordered as a single piece.</p></div>
+          <div style="padding:18px 0;border-bottom:1px solid var(--line);"><strong>How does the card payment discount work?</strong><p style="margin-top:6px;color:#57523f;font-size:.92rem;">Choose card payment at checkout and 15% is deducted from your invoice automatically.</p></div>
+          <div style="padding:18px 0;border-bottom:1px solid var(--line);"><strong>Can I order for my company or school?</strong><p style="margin-top:6px;color:#57523f;font-size:.92rem;">Yes, use the Bulk Orders page to request a quote for 10 pieces or more.</p></div>
+          <div style="padding:18px 0;"><strong>How long does delivery take?</strong><p style="margin-top:6px;color:#57523f;font-size:.92rem;">Standard delivery takes 3–6 working days nationwide after a 2–4 day production window.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/app.js"></script>
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const requiredIds = ['contactName','contactEmail','contactSubject','contactMessage'];
+    let valid = true;
+    requiredIds.forEach(id => {
+      const el = document.getElementById(id);
+      const errorEl = el.parentElement.querySelector('.field-error');
+      if(!el.value.trim()){
+        el.parentElement.classList.add('has-error');
+        if(errorEl) errorEl.textContent = 'This field is required.';
+        valid = false;
+      } else {
+        el.parentElement.classList.remove('has-error');
+        if(errorEl) errorEl.textContent = '';
+      }
+    });
+    if(!valid) return;
+    document.getElementById('contactSuccessNote').textContent = "Thanks — your message has been sent. We'll get back to you soon.";
+    showToast('Message sent', 'fa-solid fa-paper-plane');
+    this.reset();
+  });
+</script>
+</body>
+</html>

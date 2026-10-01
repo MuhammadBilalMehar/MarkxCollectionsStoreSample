@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#FCF9F1"/>
+  <ellipse cx="400.0" cy="626.046511627907" rx="182.32558139534885" ry="27.906976744186046" fill="#241E17" opacity="0.10"/>
+    <defs><linearGradient id="grad23" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5f5952"/>
+      <stop offset="55%" stop-color="#332B22"/>
+      <stop offset="100%" stop-color="#241e18"/>
+    </linearGradient></defs>
+    <g transform="translate(400.0,440.0) scale(1.8604651162790697)">
+      <path d="M -68,-58 L -108,-26 L -82,14 L -54,-6 L -54,92 L 54,92 L 54,-6 L 82,14 L 108,-26 L 68,-58
+               C 52,-80 24,-92 0,-92 C -24,-92 -52,-80 -68,-58 Z"
+            fill="url(#grad23)" stroke="#1c1712" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M -28,-90 C -18,-72 18,-72 28,-90" fill="none" stroke="#1c1712" stroke-width="2.5"/>
+      <path d="M -28,-90 C -18,-74 18,-74 28,-90" fill="none" stroke="#7a756f" stroke-width="1" stroke-dasharray="1.5 2.5" opacity="0.8"/>
+      <path d="M -54,-4 L -54,86" stroke="#1c1712" stroke-opacity="0.28" stroke-width="1.4" stroke-dasharray="1.5 2.5"/>
+      <path d="M 54,-4 L 54,86" stroke="#1c1712" stroke-opacity="0.28" stroke-width="1.4" stroke-dasharray="1.5 2.5"/>
+      <path d="M -20,-2 C -10,4 10,4 20,-2" fill="none" stroke="#847f7a" stroke-width="1.2" opacity="0.5"/>
+    </g>
+  <text x="400.0" y="800.0" text-anchor="middle" font-family="Georgia, serif" font-weight="600" font-size="40.0" fill="#241E17">Full Sleeve Layer Tee</text>
+  <text x="400.0" y="855.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="24.0" fill="#8a8268" letter-spacing="0.5">Plain · Front</text>
+</svg>
